@@ -19,9 +19,9 @@ exports.loginUser = async (event, context, callback) => {
 
         if (user && !user.verified) register = await resendOTP(phoneNumber).catch(() => { });
 
-        if (!user && register === 'OTP SENT') await userModel.create({ phoneNumber: phoneNumber, verified: false, lastOTP: null, validOTP: false, attemptCounts: 0 }).catch(() => { });
+        if (!user && register === 'OTP_SENT') await userModel.create({ phoneNumber: phoneNumber, verified: false, lastOTP: null, validOTP: false, attemptCounts: 0 }).catch(() => { });
 
-        if (register === 'OTP SENT') return callback(null, { statusCode: 200, body: JSON.stringify({ message: 'OTP SENT' }) });
+        if (register === 'OTP_SENT') return callback(null, { statusCode: 200, body: JSON.stringify({ message: 'OTP_SENT' }) });
 
     } else {
 
@@ -38,7 +38,7 @@ exports.loginUser = async (event, context, callback) => {
 
                 await user.save();
 
-                return callback(null, { statusCode: 200, body: JSON.stringify({ message: 'OTP SENT' }) });
+                return callback(null, { statusCode: 200, body: JSON.stringify({ message: 'OTP_SENT' }) });
             }
 
         } else {

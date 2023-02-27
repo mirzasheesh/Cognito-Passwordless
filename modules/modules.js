@@ -12,7 +12,7 @@ const registerUser = (phoneNumber) => {
         userPool.signUp(phoneNumber, key, attributeList, null, (error, result) => {
 
             if (error) return reject("ERROR IN REGISTERING USER");
-            return resolve("OTP SENT");
+            return resolve("OTP_SENT");
         });
     });
 }
@@ -26,7 +26,7 @@ const resendOTP = (phoneNumber) => {
         user.resendConfirmationCode((error, result) => {
 
             if (error) return reject('ERROR IN SENDIND OTP');
-            return resolve("OTP SENT");
+            return resolve("OTP_SENT");
         });
     });
 }
